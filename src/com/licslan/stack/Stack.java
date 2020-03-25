@@ -129,8 +129,8 @@ public class Stack<E> implements StackE {
 
         //判断右边的字符串括号是否匹配 可以利用栈([{{{{}}}}])    ([{{{{}}}}]]  ([{{{{}}}}))  ([{{{{}})}])
 
-        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}])"));
-        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}]]"));
+        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}])")); //true
+        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}]]")); //false
 
 
     }
@@ -139,7 +139,8 @@ public class Stack<E> implements StackE {
     //LeetCode
 
     private static boolean isValid(String s){
-        java.util.Stack<Character> stack = new java.util.Stack<>();
+        //java.util.Stack<Character> stack = new java.util.Stack<>();  JDK实现的stack
+        Stack<Character> stack = new Stack<>(); //我们自己实现的栈  经过测试我们自己写的栈和JDK都能够实现相同的结构
         for(int i=0;i<s.length();i++){
             //获取元素
             char c = s.charAt(i);
@@ -153,8 +154,8 @@ public class Stack<E> implements StackE {
                 if(stack.isEmpty())
                     return false;
                 //拿出栈顶元素对比
-                char topChar=stack.pop();
-                //将接着遍历的元素和栈顶元素进行匹配  不匹配返回false
+                char topChar=(Character) stack.pop();
+                //将接着遍历的当前元素和栈顶元素进行匹配  不匹配返回false
                 if(c==')'&&topChar!='(')
                     return false;
                 if(c==']'&&topChar!='[')
