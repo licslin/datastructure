@@ -6,7 +6,7 @@ public class LoopQueue<E> implements QueueQ<E> {
 
     //循环队列
     private E[] data;
-    //头尾
+    //头,尾
     private int front,tail;
     //队列中的原始数据
     private int size;
@@ -117,4 +117,7 @@ public class LoopQueue<E> implements QueueQ<E> {
 
         }
     }
+
+    //时间复杂度分析
+    //void enqueue() O(1) 均摊(没有触发缩容)  E enqueue(E e) O(1) 均摊(没有触发缩容)  void dequeue() O(1)  getSize()  O(1)  E front() O(1)  boolean isEmpty() O(1)
 }

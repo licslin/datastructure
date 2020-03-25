@@ -154,6 +154,11 @@ public class ArrayDynamic<E> {
     }
 
 
+    public static void main(String[] args) {
+        ArrayDynamic<Integer> arrayDynamic =new ArrayDynamic<>();
+        int getcapacity = arrayDynamic.getcapacity();
+        System.out.println(getcapacity);
+    }
 
 
     //时间复杂度分析  O(1)  O(n)  O(lgn) O(nlogn) O(n^2)
