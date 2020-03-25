@@ -2,6 +2,10 @@ package com.licslan.queue;
 
 public class Queue<E> implements QueueQ<E> {
 
+
+    //LICSLAN  day3 普通队列学习  数据结构   这个时候开始学习  算法与数据结构!!!  <之前一直没有下决心学数据结构和算法>
+
+    //数据库CRUD 我们对自己封装的数组也进行相应的内存级别的CRUD   普通队列学习 用户不能知道底层做了什么操作
     private ArrayDynamic arrayDynamic;
     public Queue(int capacity){
         arrayDynamic=new ArrayDynamic(capacity);

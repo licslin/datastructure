@@ -21,7 +21,8 @@ public class MainCount {
     }
 
     public static void main(String[] args) {
-        int optCount = 100000;
+        int optCount = 100000;    // Queue cost time is 4.74253 秒     LoopQueue cost time is 0.0106495 秒
+        //int optCount = 1000000; // Queue cost time is 701.1282601 秒 LoopQueue cost time is 0.0934843 秒
         Queue<Integer> queue = new Queue<>();
         double v = testQueue(queue, optCount);    //出队  dequeue O(n)   testQueue()方法就是O(n2)
         System.out.println("Queue cost time is "+v+" 秒");
