@@ -1,6 +1,6 @@
 package com.licslan.queue;
 
-public class Queue<E> implements QueueQ {
+public class Queue<E> implements QueueQ<E> {
 
     private ArrayDynamic arrayDynamic;
     public Queue(int capacity){
@@ -21,20 +21,19 @@ public class Queue<E> implements QueueQ {
     }
 
     @Override
-    public void enqueue(Object o) {
-        E e =(E)o;
+    public void enqueue(E e) {
         arrayDynamic.addLast(e);
 
     }
 
     @Override
-    public Object dequeue() {
-        return arrayDynamic.removeFirst();
+    public E dequeue() {
+        return (E) arrayDynamic.removeFirst();
     }
 
     @Override
-    public Object getFront() {
-        return arrayDynamic.getFirst();
+    public E getFront() {
+        return (E) arrayDynamic.getFirst();
     }
     @Override
     public String toString(){
