@@ -10,9 +10,10 @@ public class Stack<E> implements StackE {
     //栈的应用
     //1.无处在的[undo撤销]
     //2.程序调用的系统栈  子过程 子逻辑的调用  比如对递归的理解
+    //3.括号匹配  栈  检查括号匹配
 
     //stack<E>
-    //void push(E)  E pop()   E peek()  int getSize()  boolean isEmpty()
+    //void push(E) O(1)     E pop()  O(1)   E peek()  O(1) int getSize()  O(1) boolean isEmpty()  O(1)
     //用户来看不关心你底层怎么实现栈的功能(上述的5个方法)  底层实现有多种方法
     //Interface Stack<E>  <-----implement-------ArrayStack<E>   利用动态数组来实现栈
 
@@ -120,10 +121,50 @@ public class Stack<E> implements StackE {
         integerStackNew.pop();
         System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
         System.out.println("再操作就报错啦~~~~^_^");
-        integerStackNew.pop();
+        //integerStackNew.pop();
         System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
 
 
+
+
+        //判断右边的字符串括号是否匹配 可以利用栈([{{{{}}}}])    ([{{{{}}}}]]  ([{{{{}}}}))  ([{{{{}})}])
+
+        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}])"));
+        System.out.println("是匹配的吗？  "+isValid("([{{{{}}}}]]"));
+
+
+    }
+
+
+    //LeetCode
+
+    private static boolean isValid(String s){
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+        for(int i=0;i<s.length();i++){
+            //获取元素
+            char c = s.charAt(i);
+            //判断是否是"("  "{"  "[" 是的话放入stack  左括号
+            if(c=='('||c=='['||c=='{')
+                //入栈
+                stack.push(c);
+            else {
+                //否则就考察的是右括号了
+                //栈顶为空 就没有可以匹配的字符啦  返回false
+                if(stack.isEmpty())
+                    return false;
+                //拿出栈顶元素对比
+                char topChar=stack.pop();
+                //将接着遍历的元素和栈顶元素进行匹配  不匹配返回false
+                if(c==')'&&topChar!='(')
+                    return false;
+                if(c==']'&&topChar!='[')
+                    return false;
+                if(c=='}'&&topChar!='{')
+                    return false;
+            }
+        }
+        //刚好一一匹配完成  栈数据都拿完了
+        return stack.isEmpty();
     }
 
 }
