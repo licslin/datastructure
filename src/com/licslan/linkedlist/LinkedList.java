@@ -1,6 +1,7 @@
 package com.licslan.linkedlist;
 
 public class LinkedList<E> {
+    //私有
     private class Node{
         public E e;
         public Node nxet;
@@ -97,6 +98,10 @@ public class LinkedList<E> {
     // ^_^ 可以在head节点添加一个虚拟节点呀 不存储任何元素 值null  dummyHead  为了编写方便 用户不用知道
     //详情改造请看LinkedListNew.class
 
+
+
+    //链表  双链表  循环链表    Java里面的LinkedList -->循环双向链表
+    //Null也剋以看成是一个链表  一个元素的也可以看作是链表
 
 
 }

@@ -153,6 +153,32 @@ public class Main {
         }
     }//class {}
 
+    //链表天然递归操作 SolutionC-->SolutionD  LeetCode 203
+    static class SolutionD{
+        //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
+        public ListNode removeE(ListNode head,int val){
+            if(head==null)
+                return null;
+            head.next = removeE(head.next, val);
+            if(head.val==val)
+                return head.next;
+            else {
+                return head;
+            }
+        }
+    }//class {}
+
+    //链表天然递归操作 SolutionD-->SolutionE  三目运算符
+    static class SolutionE{
+        //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
+        public ListNode removeE(ListNode head,int val){
+            if(head==null)
+                return null;
+            head.next = removeE(head.next, val);
+            return head.val==val ? head.next : head;
+        }
+    }//class {}
+
     public static void main(String[] args) {
         LinkedListNew<Integer> listNew = new LinkedListNew<>();
         for(int i=0;i<10;i++) {
