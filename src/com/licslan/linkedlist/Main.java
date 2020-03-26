@@ -26,19 +26,6 @@ public class Main {
     // 数组与链表对比
     // 数组：最好用于索引有语义的情况  支持快速查询  静态数据结构
     // 链表：不适用于索引有语义的情况  动态         动态数据结构
-    public static void main(String[] args) {
-        LinkedListNew<Integer> listNew = new LinkedListNew<>();
-        for(int i=0;i<10;i++) {
-            listNew.addFirst(i);
-            System.out.println(listNew);
-        }
-        listNew.add(3,1  );
-        System.out.println(listNew);
-        listNew.remove(3);
-        System.out.println(listNew);
-
-
-
 
         //链表时间复杂度
         //add    addLast(e)  O(n)  addFirst(e)  O(1)  add(index,e)  O(n/2)=O(n)
@@ -53,19 +40,46 @@ public class Main {
 
 
 
-    }
 
 
-    class ListNode{
+    static class ListNode{
         //链表与递归
         //1-->2-->2-->7-->6-->2-->5-->2-->2  删除value为2的元素?
         //1-->7-->6-->5
         int val;
         ListNode next;
         ListNode(int x){val=x;}
+        // 链表节点的构造函数
+        // 使用arr为参数，创建一个链表，当前的ListNode为链表头结点
+        public ListNode(int[] arr){
+
+            if(arr == null || arr.length == 0)
+                throw new IllegalArgumentException("arr can not be empty");
+
+            this.val = arr[0];
+            ListNode cur = this;
+            for(int i = 1 ; i < arr.length ; i ++){
+                cur.next = new ListNode(arr[i]);
+                cur = cur.next;
+            }
+        }
+
+        // 以当前节点为头结点的链表信息字符串
+        @Override
+        public String toString(){
+
+            StringBuilder s = new StringBuilder();
+            ListNode cur = this;
+            while(cur != null){
+                s.append(cur.val + "->");
+                cur = cur.next;
+            }
+            s.append("NULL");
+            return s.toString();
+        }
     }
     //不使用虚拟头节点
-    class SolutionA{
+    static class SolutionA{
 
         //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
         public ListNode removeE(ListNode head,int val){
@@ -101,7 +115,7 @@ public class Main {
 
 
     //使用虚拟头节点
-    class SolutionB{
+    static class SolutionB{
         //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
         public ListNode removeE(ListNode head,int val){
             ListNode dummyHead = new ListNode(-1);
@@ -120,5 +134,43 @@ public class Main {
             return dummyHead.next;
         }
     }//class {}
+
+
+
+    //链表天然递归操作
+    static class SolutionC{
+        //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
+        public ListNode removeE(ListNode head,int val){
+            if(head==null)
+                return null;
+            ListNode listNode = removeE(head.next, val);
+            if(head.val==val)
+                return listNode;
+            else {
+                head.next=listNode;
+                return head;
+            }
+        }
+    }//class {}
+
+    public static void main(String[] args) {
+        LinkedListNew<Integer> listNew = new LinkedListNew<>();
+        for(int i=0;i<10;i++) {
+            listNew.addFirst(i);
+            System.out.println(listNew);
+        }
+        listNew.add(3,1  );
+        System.out.println(listNew);
+        listNew.remove(3);
+        System.out.println(listNew);
+
+
+        int[] nums = {1, 2, 6, 3, 4, 5, 6};
+        ListNode head = new ListNode(nums);
+        System.out.println(head);
+
+        ListNode res = (new Main.SolutionC()).removeE(head, 6);
+        System.out.println(res);
+    }
 
 }
