@@ -1,6 +1,7 @@
 package com.licslan.stack;
 
 public class Stack<E> implements StackE {
+    //[[[利用数组实现栈]]]
     //LICSLAN  day2 栈学习  数据结构   这个时候开始学习  算法与数据结构!!!  <之前一直没有下决心学数据结构和算法>
     //栈的理解
     //1.栈也是一种线性结构
