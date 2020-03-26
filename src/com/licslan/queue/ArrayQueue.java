@@ -1,16 +1,16 @@
 package com.licslan.queue;
 
-public class Queue<E> implements QueueQ<E> {
+public class ArrayQueue<E> implements QueueQ<E> {
 
 
     //LICSLAN  day3 普通队列学习  数据结构   这个时候开始学习  算法与数据结构!!!  <之前一直没有下决心学数据结构和算法>
 
     //数据库CRUD 我们对自己封装的数组也进行相应的内存级别的CRUD   普通队列学习 用户不能知道底层做了什么操作
     private ArrayDynamic arrayDynamic;
-    public Queue(int capacity){
+    public ArrayQueue(int capacity){
         arrayDynamic=new ArrayDynamic(capacity);
     }
-    public Queue(){
+    public ArrayQueue(){
         arrayDynamic=new ArrayDynamic();
     }
 
@@ -42,7 +42,7 @@ public class Queue<E> implements QueueQ<E> {
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append("Queue: ");
+        res.append("ArrayQueue: ");
         res.append("Front [");
         for(int i=0;i<arrayDynamic.getSize();i++){
             res.append(arrayDynamic.getIndex(i));
@@ -54,16 +54,16 @@ public class Queue<E> implements QueueQ<E> {
     }
 
     public static void main(String[] args) {
-        Queue<Integer> queue= new Queue<>();
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         for(int i=0;i<10;i++){
             //入栈
-            queue.enqueue(i);
-            System.out.println(queue);
+            arrayQueue.enqueue(i);
+            System.out.println(arrayQueue);
 
             if(i%3==2){
                 //出栈
-                queue.dequeue();
-                System.out.println(queue);
+                arrayQueue.dequeue();
+                System.out.println(arrayQueue);
             }
 
         }

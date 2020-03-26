@@ -26,4 +26,29 @@ public class Main {
     // 数组与链表对比
     // 数组：最好用于索引有语义的情况  支持快速查询  静态数据结构
     // 链表：不适用于索引有语义的情况  动态         动态数据结构
+    public static void main(String[] args) {
+        LinkedListNew<Integer> listNew = new LinkedListNew<>();
+        for(int i=0;i<10;i++) {
+            listNew.addFirst(i);
+            System.out.println(listNew);
+        }
+        listNew.add(3,1  );
+        System.out.println(listNew);
+        listNew.remove(3);
+        System.out.println(listNew);
+
+
+
+
+        //链表时间复杂度
+        //add    addLast(e)  O(n)  addFirst(e)  O(1)  add(index,e)  O(n/2)=O(n)
+        //delete removeLast(e) O(n) removeFirst(e) O(1) remove(index,e) O(n/2)=O(n)
+        //update set(index,e) O(n)
+        //query get(index) O(n) contains(e) O(n) getFirst() O(1)
+        //整体时间复杂度  O(n)
+
+
+        //链表头部add/del O(1)  else O(n)
+        //链表头部 query  O(1)  else O(n)
+    }
 }

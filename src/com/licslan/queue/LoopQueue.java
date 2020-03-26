@@ -85,7 +85,7 @@ public class LoopQueue<E> implements QueueQ<E> {
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append(String.format("Queue: size = %d , capacity = %d\n",size,getCapacity()));
+        res.append(String.format("ArrayQueue: size = %d , capacity = %d\n",size,getCapacity()));
         res.append("front [");
         for(int i=front;i!=tail;i=(i+1)%data.length){
             res.append(data[i]);

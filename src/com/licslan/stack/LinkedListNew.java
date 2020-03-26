@@ -1,4 +1,4 @@
-package com.licslan.linkedlist;
+package com.licslan.stack;
 
 public class LinkedListNew<E> {
     private class Node{

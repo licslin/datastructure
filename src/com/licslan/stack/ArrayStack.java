@@ -1,6 +1,6 @@
 package com.licslan.stack;
 
-public class Stack<E> implements StackE {
+public class ArrayStack<E> implements StackE {
     //[[[利用数组实现栈]]]
     //LICSLAN  day2 栈学习  数据结构   这个时候开始学习  算法与数据结构!!!  <之前一直没有下决心学数据结构和算法>
     //栈的理解
@@ -16,15 +16,16 @@ public class Stack<E> implements StackE {
     //stack<E>
     //void push(E) O(1)     E pop()  O(1)   E peek()  O(1) int getSize()  O(1) boolean isEmpty()  O(1)
     //用户来看不关心你底层怎么实现栈的功能(上述的5个方法)  底层实现有多种方法
-    //Interface Stack<E>  <-----implement-------ArrayStack<E>   利用动态数组来实现栈
+    //Interface ArrayStack<E>  <-----implement-------ArrayStack<E>   利用动态数组来实现栈
 
+    //动态数组
     ArrayDynamic<E> arrayDynamic;
-    public Stack(int capaticy){
+    public ArrayStack(int capaticy){
         arrayDynamic = new ArrayDynamic<>(capaticy);
     }
 
     //无参构造方法 不知道stack的初始大小
-    public Stack(){
+    public ArrayStack(){
         arrayDynamic = new ArrayDynamic<>();
     }
 
@@ -61,7 +62,7 @@ public class Stack<E> implements StackE {
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append("Stack: ");
+        res.append("ArrayStack: ");
         res.append("[");
         for(int i=0;i<arrayDynamic.getSize();i++){
             res.append(arrayDynamic.getIndex(i));
@@ -74,56 +75,56 @@ public class Stack<E> implements StackE {
 
 
     public static void main(String[] args) {
-        Stack<Integer> integerStack = new Stack<>();
+        ArrayStack<Integer> integerArrayStack = new ArrayStack<>();
         for(int i=0;i<5;i++){
-            integerStack.push(i);
-            System.out.println("元素是  "+integerStack);
+            integerArrayStack.push(i);
+            System.out.println("元素是  "+ integerArrayStack);
         }
 
-        integerStack.pop();
-        System.out.println("出栈后的元素是： "+integerStack);
+        integerArrayStack.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStack);
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-        Stack<Integer> integerStackNew = new Stack<>(10);
+        ArrayStack<Integer> integerArrayStackNew = new ArrayStack<>(10);
         for(int i=0;i<15;i++){
-            integerStackNew.push(i);
-            System.out.println("元素是  "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
+            integerArrayStackNew.push(i);
+            System.out.println("元素是  "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
         }
 
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
-        integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
+        integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
         System.out.println("再操作就报错啦~~~~^_^");
-        //integerStackNew.pop();
-        System.out.println("出栈后的元素是： "+integerStackNew+"  and capacity is "+integerStackNew.getCapacity());
+        //integerArrayStackNew.pop();
+        System.out.println("出栈后的元素是： "+ integerArrayStackNew +"  and capacity is "+ integerArrayStackNew.getCapacity());
 
 
 
@@ -140,22 +141,22 @@ public class Stack<E> implements StackE {
     //LeetCode
 
     private static boolean isValid(String s){
-        //java.util.Stack<Character> stack = new java.util.Stack<>();  JDK实现的stack
-        Stack<Character> stack = new Stack<>(); //我们自己实现的栈  经过测试我们自己写的栈和JDK都能够实现相同的结构
+        //java.util.ArrayStack<Character> arrayStack = new java.util.ArrayStack<>();  JDK实现的stack
+        ArrayStack<Character> arrayStack = new ArrayStack<>(); //我们自己实现的栈  经过测试我们自己写的栈和JDK都能够实现相同的结构
         for(int i=0;i<s.length();i++){
             //获取元素
             char c = s.charAt(i);
             //判断是否是"("  "{"  "[" 是的话放入stack  左括号
             if(c=='('||c=='['||c=='{')
                 //入栈
-                stack.push(c);
+                arrayStack.push(c);
             else {
                 //否则就考察的是右括号了
                 //栈顶为空 就没有可以匹配的字符啦  返回false
-                if(stack.isEmpty())
+                if(arrayStack.isEmpty())
                     return false;
                 //拿出栈顶元素对比
-                char topChar=(Character) stack.pop();
+                char topChar=(Character) arrayStack.pop();
                 //将接着遍历的当前元素和栈顶元素进行匹配  不匹配返回false
                 if(c==')'&&topChar!='(')
                     return false;
@@ -166,7 +167,7 @@ public class Stack<E> implements StackE {
             }
         }
         //刚好一一匹配完成  栈数据都拿完了
-        return stack.isEmpty();
+        return arrayStack.isEmpty();
     }
 
 }

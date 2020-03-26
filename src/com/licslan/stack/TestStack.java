@@ -1,35 +1,36 @@
-package com.licslan.queue;
+package com.licslan.stack;
 
 import java.util.Random;
 
-public class TestQueue {
-    // 测试使用q运行opCount个enqueueu和dequeue操作所需要的时间，单位：秒
+public class TestStack {
+    // 测试使用q运行opCount个push和pop操作所需要的时间，单位：秒
     // 运行多次取平均值
-    private static double testQueue(QueueQ<Integer> q,int optCount){
+    private static double testStack(StackE<Integer> q,int optCount){
         long startTime=System.nanoTime();
 
         Random random = new Random();
-        //入队操作
+        //入栈操作
         for(int i=0;i<optCount;i++)
-            q.enqueue(random.nextInt(Integer.MAX_VALUE));
-        //出队操作
+            q.push(random.nextInt(Integer.MAX_VALUE));
+        //出栈操作
         for(int i=0;i<optCount;i++)
-            q.dequeue();
+            q.pop();
 
         long endTime = System.nanoTime();
         return (endTime-startTime)/1000000000.0;
     }
 
     public static void main(String[] args) {
-        int optCount = 100000;    // Queue cost time is 4.74253 秒     LoopQueue cost time is 0.0106495 秒
-        //int optCount = 1000000; // Queue cost time is 701.1282601 秒 LoopQueue cost time is 0.0934843 秒
-        Queue<Integer> queue = new Queue<>();
-        double v = testQueue(queue, optCount);    //出队  dequeue O(n)   testQueue()方法就是O(n2)
-        System.out.println("Queue cost time is "+v+" 秒");
+        //int optCount = 100000;    // arrayStack cost time is 0.0164159 秒     linkedListStack cost time is 0.011901599 秒
+        int optCount = 1000000;     // arrayStack cost time is 0.0559767 秒      linkedListStack cost time is 0.246334201 秒
+        //没有巨大差异  时间复杂度一致基本上
+        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        double v = testStack(arrayStack, optCount);
+        System.out.println("arrayStack cost time is "+v+" 秒");
 
-        LoopQueue<Integer> loopQueue = new LoopQueue<>();
-        double r = testQueue(loopQueue,optCount ); //出队  dequeue O(1)   testQueue()方法就是O(n)
-        System.out.println("LoopQueue cost time is "+r+" 秒");
+        LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
+        double r = testStack(linkedListStack,optCount );
+        System.out.println("linkedListStack cost time is "+r+" 秒");
 
     }
 }
