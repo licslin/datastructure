@@ -50,5 +50,75 @@ public class Main {
 
         //链表头部add/del O(1)  else O(n)
         //链表头部 query  O(1)  else O(n)
+
+
+
     }
+
+
+    class ListNode{
+        //链表与递归
+        //1-->2-->2-->7-->6-->2-->5-->2-->2  删除value为2的元素?
+        //1-->7-->6-->5
+        int val;
+        ListNode next;
+        ListNode(int x){val=x;}
+    }
+    //不使用虚拟头节点
+    class SolutionA{
+
+        //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
+        public ListNode removeE(ListNode head,int val){
+            //删除头节点  A
+            while (head!=null&&head.val==val){
+                //认为头节点和要删除的值相等就不停的删除
+                ListNode delNode=head;
+                head=head.next;
+                delNode.next=null;
+                //上述可以改造为  head=head.next;
+            }
+
+            //如果链表中都是要删除的节点呢   A操作就会把里面的元素都删除完了 那就返回一个空链表就行
+            if(head==null)
+                return null;
+
+            //认为待删除节点的前一个节点为prev  说明前一个元素不会被删除   后面可能有会被删除的元素
+            ListNode prev=head;
+            //删除中间节点
+            while (prev.next!=null){
+                if(prev.next.val==val){
+                    ListNode delNode = prev.next;
+                    prev.next = delNode.next;
+                    delNode.next=null;
+                    //上述可以改造为  prev.next=prev.next.next;
+                }else {
+                    prev=prev.next;
+                }
+            }
+            return head;
+        }
+    }//class {}
+
+
+    //使用虚拟头节点
+    class SolutionB{
+        //这里要删除多个元素  所以就写循环了  之前都是一个元素 找到要删除的元素删除就好了 所以不用不停的循环的
+        public ListNode removeE(ListNode head,int val){
+            ListNode dummyHead = new ListNode(-1);
+            dummyHead.next=head;
+            //加入虚拟节点就不需要单独写删除头节点的逻辑了
+            //认为待删除节点的前一个节点为prev  说明前一个元素不会被删除   后面可能有会被删除的元素
+            ListNode prev=dummyHead;
+            //删除中间节点
+            while (prev.next!=null){
+                if(prev.next.val==val){
+                    prev.next=prev.next.next;
+                }else {
+                    prev=prev.next;
+                }
+            }
+            return dummyHead.next;
+        }
+    }//class {}
+
 }
