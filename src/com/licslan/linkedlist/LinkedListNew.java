@@ -157,6 +157,25 @@ public class LinkedListNew<E> {
         return retNode.e;
     }
 
+    // 从链表中删除元素e
+    public void removeElement(E e){
+
+        Node prev = dummyHead;
+        while(prev.nxet != null){
+            if(prev.nxet.e.equals(e))
+                break;
+            prev = prev.nxet;
+        }
+
+        if(prev.nxet != null){
+            Node delNode = prev.nxet;
+            prev.nxet = delNode.nxet;
+            delNode.nxet = null;
+            size --;
+        }
+    }
+
+
     public E removeFirst(){
         return remove(0);
     }
