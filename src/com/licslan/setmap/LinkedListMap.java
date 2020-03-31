@@ -1,7 +1,9 @@
 package com.licslan.setmap;
 
 import java.util.ArrayList;
-
+/**
+ * 利用链表实现映射  use linked implements map (CRUD)
+ * */
 public class LinkedListMap<K,V>implements Map<K,V> {
 
     private class Node {
