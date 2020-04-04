@@ -70,13 +70,21 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     private void siftDown(int i) {
+        //如果左孩子索引比堆元素数量小
         while (leftChild(i)<data.getSize()){
+            //说明左孩子是存在的
             int j= leftChild(i);
+            //如果右孩子也存在 并且右孩子大于左孩子 （右边>左边）
             if(j+1<data.getSize()&&
                     data.getIndex(j+1).compareTo(data.getIndex(j))>0){
-                j=rightChild(i);}
+                //右孩子值赋值给j
+                j=rightChild(i);
+            }
             //data[j]是leftChild & rightChild 中的最大值
+
+            //如果当前元素的值大于等于右孩子
             if(data.getIndex(i).compareTo(data.getIndex(j))>=0)break;
+            //就下沉交换一下
             data.swap(i,j);
             i=j;
         }
