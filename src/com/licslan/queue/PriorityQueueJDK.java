@@ -1,47 +1,13 @@
 package com.licslan.queue;
 
-import com.licslan.heap.MaxHeap;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.PriorityQueue;
 
 /**
- * 使用heap实现优先队列这种数据结构
+ * 使用Minheap JDK  PriorityQueue(最小堆)  实现优先队列这种数据结构
  * */
-public class PriorityQueue<E extends Comparable<E>> implements QueueQ<E> {
-
-    //最大堆   但是jdk中PriorityQueue其实是最小堆结构
-    private MaxHeap<E> maxHeap;
-
-    public PriorityQueue(){
-        maxHeap = new MaxHeap<>();
-    }
-
-    @Override
-    public int getSize(){
-        return maxHeap.size();
-    }
-
-    @Override
-    public boolean isEmpty(){
-        return maxHeap.isEmpty();
-    }
-
-    @Override
-    public E getFront(){
-        return maxHeap.findMax();
-    }
-
-    @Override
-    public void enqueue(E e){
-        maxHeap.add(e);
-    }
-
-    @Override
-    public E dequeue(){
-        return maxHeap.extractMax();
-    }
+public class PriorityQueueJDK {
 
     //优先队列的经典问题
 
@@ -55,7 +21,8 @@ public class PriorityQueue<E extends Comparable<E>> implements QueueQ<E> {
 
 
     //可比较的内部类
-    private class Freq implements Comparable<Freq>{
+    //有了下面的FreqComparator就不用下面的Freq去实现Comparable<Freq>
+    /*private class Freq implements Comparable<Freq>{
 
         public int e, freq;
 
@@ -67,11 +34,26 @@ public class PriorityQueue<E extends Comparable<E>> implements QueueQ<E> {
         @Override
         public int compareTo(Freq another){
             if(this.freq < another.freq)
-                return 1;
-            else if(this.freq > another.freq)
                 return -1;
+            else if(this.freq > another.freq)
+                return 1;
             else
                 return 0;
+        }
+    }*/
+
+    private class Freq{
+        public int e, freq;
+        public Freq(int e, int freq){
+            this.e = e;
+            this.freq = freq;
+        }
+    }
+
+    private class FreqComparator implements Comparator<Freq>{
+        @Override
+        public int compare(Freq a,Freq b){
+            return a.freq-b.freq;
         }
     }
 
@@ -85,19 +67,20 @@ public class PriorityQueue<E extends Comparable<E>> implements QueueQ<E> {
                 map.put(num, 1);
         }
 
-        PriorityQueue<Freq> pq = new PriorityQueue<>();
+        //PriorityQueue<Freq> pq = new PriorityQueue<>();  JDK  PriorityQueue
+        PriorityQueue<Freq> pq = new PriorityQueue<>(new FreqComparator());
         for(int key: map.keySet()){
-            if(pq.getSize() < k)
-                pq.enqueue(new Freq(key, map.get(key)));
-            else if(map.get(key) > pq.getFront().freq){
-                pq.dequeue();
-                pq.enqueue(new Freq(key, map.get(key)));
+            if(pq.size() < k)
+                pq.add(new Freq(key, map.get(key)));
+            else if(map.get(key) > pq.peek().freq){
+                pq.remove();
+                pq.add(new Freq(key, map.get(key)));
             }
         }
 
         LinkedList<Integer> res = new LinkedList<>();
         while(!pq.isEmpty())
-            res.add(pq.dequeue().e);
+            res.add(pq.remove().e);
         return res;
     }
 
@@ -111,19 +94,11 @@ public class PriorityQueue<E extends Comparable<E>> implements QueueQ<E> {
 
         int[] nums = {1, 1, 1, 2, 2, 3};
         int k = 2;
-        printList((new PriorityQueue()).topKFrequent(nums, k));
+        printList((new PriorityQueueJDK()).topKFrequent(nums, k));
     }
 
 
 
 
-
-
-
-
-
-
-
-
-
+    //索引堆？ 2叉堆  多叉堆  2项堆？  斐波那契堆？  广义队列普通队列 优先队列  栈
 }
