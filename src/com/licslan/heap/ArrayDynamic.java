@@ -28,6 +28,13 @@ public class ArrayDynamic<E> {
         data=(E[]) new Object[capacity];
         size=0;
     }
+
+    public ArrayDynamic(E[] arr){
+        data = (E[])new Object[arr.length];
+        for(int i=0;i<arr.length;i++)
+            data[i]=arr[i];
+        size=arr.length;
+    }
     //无参构造函数
     public ArrayDynamic(){
         this(10);
@@ -69,6 +76,13 @@ public class ArrayDynamic<E> {
         //将data指向新的数组newData  那么以前的data数组JVM gc自己自动回收了
         data=newData;
 
+    }
+
+    //修改指定元素的值
+    void set(int index,E e){
+        if(index<0||index>=size)
+            throw new IllegalArgumentException("Set failed! Index is illegal");
+        data[index] = e;
     }
 
     public void addLast(E i) {

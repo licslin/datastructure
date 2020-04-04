@@ -82,13 +82,46 @@ public class MaxHeap<E extends Comparable<E>> {
             }
             //data[j]是leftChild & rightChild 中的最大值
 
-            //如果当前元素的值大于等于右孩子
+            //如果当前元素的值大于等于右孩子(左右孩子最大的一个值)  不违反堆的性质 就不交换了
             if(data.getIndex(i).compareTo(data.getIndex(j))>=0)break;
-            //就下沉交换一下
+
+            //否则就下沉交换一下
             data.swap(i,j);
+            //将j赋值给i  进行新一轮循环来比较刚才上述的逻辑操作
             i=j;
         }
     }
+
+
+    // add  &  extractMax 的时间复杂度都是O(logn)
+    // 二叉树高度的这个级别  堆是一颗完全二叉树 永远不会退化为链表的线性结构
+
+    //replace  取出最大元素后  放入一个新元素
+    // 实现方案一：  先exarctMax 再 add 两次O(logn)
+    // 实现方案二：  可以直接将堆顶元素替换以后siftDown 一次O(logn)
+
+    //取出堆中最大元素  并且替换成元素e
+    public E replace(E e){
+        E ret=findMax();
+        //替换
+        data.set(0,e);
+        //下沉
+        siftDown(0);
+        return ret;
+    }
+
+    //heapify  将任意数组整理成堆的形状
+    // 实现方案一：  将数组中N个元添加到我们实现的heap结构的对象中就可以了  O(logn)
+    // 实现方案二：  将当前数组看成是一颗完全二叉树 从最后一个非叶子节点不断向前siftDown就行了  O(n)
+
+    //heapify
+    public MaxHeap(E[] arr){
+        data=new ArrayDynamic<>(arr);
+        //将当前数组看成是一颗完全二叉树 从最后一个非叶子节点不断向前siftDown就行了  O(n)
+        for(int i=parent(arr.length-1);i>=0;i--)
+            siftDown(i);
+    }
+
 
 
 }

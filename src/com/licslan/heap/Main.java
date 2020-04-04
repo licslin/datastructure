@@ -2,7 +2,7 @@ package com.licslan.heap;
 
 import java.util.Random;
 
-public class Mina {
+public class Main {
 
     public static void main(String[] args) {
         int n =1000000;
