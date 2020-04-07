@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 /**
  * 我们的第一版Union-Find本质就是一个数组  用数组来模拟每个元素是属于哪个集合的
  * */

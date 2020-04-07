@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 /**
  * 并查集  union find 解决连接问题   社交网络....  网络问题
  *

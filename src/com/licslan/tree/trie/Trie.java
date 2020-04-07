@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.trie;
 /**
  * 字典树  trie  多叉树  每个节点有若干指向下个节点的指针
  *

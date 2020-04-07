@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 /**
  * 我们的第二版Union-Find  由孩子指父亲节点  组成森林结构 与第一版有很大的不同
  * */

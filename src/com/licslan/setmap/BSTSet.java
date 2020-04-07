@@ -1,5 +1,5 @@
 package com.licslan.setmap;
-import com.licslan.tree.BST;
+import com.licslan.tree.bst.BST;
 
 /**
  * 利用二分搜索树实现set  集中元素不可重复思想  但是元素需要有可比性

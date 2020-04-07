@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.segmenttree;
 /**
  * 线段树
  * */

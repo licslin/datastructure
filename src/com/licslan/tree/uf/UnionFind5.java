@@ -1,6 +1,6 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 /**
- * 我们的第六版Union-Find  优化思路  基于路径压缩&size优化&rank的优化 基于第三版中
+ * 我们的第五版Union-Find  优化思路  基于路径压缩&size优化&rank的优化 基于第三版中
  * 要比较一下合并前每个集合中数据元素的大小  将元素小的合并到元素多的上面
  * 减小树的高度  提高性能  O(h)  但是元素少的元素不一定就比较元素多的树的
  * 高度矮些    这个时候合并前要比较树的高度  树的高度矮的要指向指向树的高度高的
@@ -8,10 +8,10 @@ package com.licslan.tree;
  * 这样最终形成的树总体高度会变小  性能也会提升对于查询来说   但总体来说基于rank
  * 的优化更加合理  choose rank  而第二版中  极端情况下可能是形成链表形式  性能就会变差
  * 如果数据量很大的话  这个时候就要基于整体的路径优化  降低树的整体高度  算法竞赛中常用的
- * 优化手段  此时优化时  将所有节点元素都指向根节点作为父亲节点
+ * 优化手段
  *
  * */
-public class UnionFind6 implements UF {
+public class UnionFind5 implements UF {
 
     // rank[i]表示以i为根的集合所表示的树的层数
     // 在后续的代码中, 我们并不会维护rank的语意, 也就是rank的值在路径压缩的过程中, 有可能不在是树的层数值
@@ -20,7 +20,7 @@ public class UnionFind6 implements UF {
     private int[] parent; // parent[i]表示第i个元素所指向的父节点
 
     // 构造函数
-    public UnionFind6(int size){
+    public UnionFind5(int size){
 
         rank = new int[size];
         parent = new int[size];
@@ -43,12 +43,16 @@ public class UnionFind6 implements UF {
         if(p < 0 || p >= parent.length)
             throw new IllegalArgumentException("p is out of bound.");
 
-        // path compression 2, 递归算法
-        if(p != parent[p])
-            //整棵树的根节点
-            parent[p] = find(parent[p]);
-        //返回整棵树的根节点
-        return parent[p];
+        while( p != parent[p] ){
+            //对于第四版中加一行代码即可  在查找过程中  让自己当前的节点指向父亲的父亲节点就行
+            //因为整体来说他们不管以怎样的形式连接   他们都是相连的  不管极端条件下面的链表形式
+            //还是树的结构  这行代码的操作  整体会降低树的高度了 提高查询效率  其他逻辑不变
+            //此时不做rank的维护也是出于性能考究  不维护性能会更好  也没有什么影响此时
+            //此时使用的粗略的rank排名  不用精确的知道每个元素节点所处树的高度 此时可以胜任并查集的工作了 （是否连接 & 合并元素 & 查找节点 ）
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
     }
 
     // 查看元素p和元素q是否所属一个集合

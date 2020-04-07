@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.bst;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**
  * Binary Search Tree
- * 泛型但要是可比较的类型
+ * 泛型但要是可比较的类型  二分搜索树
  * */
 public class BST<E extends Comparable<E>>{
 

@@ -1,5 +1,7 @@
 package com.licslan.tree;
 
+import com.licslan.tree.bst.BST;
+
 import java.util.ArrayList;
 import java.util.Random;
 

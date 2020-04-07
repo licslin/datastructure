@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.licslan.tree;
+package com.licslan.tree.uf;
 /**
  * 我们的第三版Union-Find  优化思路   基于size的优化 基于第二版中
  * 要比较一下合并前每个集合中数据元素的大小  将元素小的合并到元素多的上面
