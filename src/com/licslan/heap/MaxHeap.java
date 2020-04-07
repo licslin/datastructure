@@ -118,8 +118,10 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap(E[] arr){
         data=new ArrayDynamic<>(arr);
         //将当前数组看成是一颗完全二叉树 从最后一个非叶子节点不断向前siftDown就行了  O(n)
-        for(int i=parent(arr.length-1);i>=0;i--)
-            siftDown(i);
+        if(arr.length != 1){
+            for(int i=parent(arr.length-1);i>=0;i--)
+                siftDown(i);
+        }
     }
 
 

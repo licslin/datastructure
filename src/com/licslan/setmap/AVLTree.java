@@ -1,6 +1,6 @@
-package com.licslan.tree.avltree;
+package com.licslan.setmap;
 
-import com.licslan.setmap.FileOperation;
+import com.licslan.tree.avltree.BST;
 
 import java.util.ArrayList;
 
@@ -21,10 +21,6 @@ import java.util.ArrayList;
  *
  * 加入节点后 AVL 如何维护自平衡  沿着节点向上维护平衡性 ？
  * 删除节点  AVL 如何维护自平衡？
- *
- * AVL优化   局限性    AVL 是第一个自平衡的二分搜索树
- * 那么就是大名鼎鼎的红黑树  整体上来说  红黑树 平均时间复杂度是要优于AVL的   CRUD   红黑树&AVL O(long)  只是红黑树旋转次数更少
- * 就像平均来说快速排序算法是要优于归并排序算法的   CRUD O(nlogn) <--> 快递&归并
  *
  *
  * */
